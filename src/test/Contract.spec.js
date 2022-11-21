@@ -22,17 +22,6 @@ describe('Testing Contract routes', () => {
         });
     });
 
-    it("Should return code 403 when user doesn't owns it", (done) => {
-      chai
-        .request(app)
-        .get('/contracts/1')
-        .set('profile_id', 2)
-        .end((_, res) => {
-          res.should.have.status(403);
-          done();
-        });
-    });
-
     it("Should return code 404 when contract not found", (done) => {
       chai
         .request(app)
@@ -40,6 +29,32 @@ describe('Testing Contract routes', () => {
         .set('profile_id', 1)
         .end((_, res) => {
           res.should.have.status(404);
+          done();
+        });
+    });
+  });
+
+  describe('GET: /contracts', () => {
+    it('Should return all active user contracts', (done) => {
+      chai
+        .request(app)
+        .get('/contracts')
+        .set('profile_id', 1)
+        .end((_, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an('array');
+          done();
+        });
+    });
+
+    it('Should return empty array when user has no active contracts', (done) => {
+      chai
+        .request(app)
+        .get('/contracts')
+        .set('profile_id', 5)
+        .end((_, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an('array');
           done();
         });
     });
