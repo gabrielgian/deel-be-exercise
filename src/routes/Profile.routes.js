@@ -12,8 +12,6 @@ const postDepositBalance = async (req, res) => {
     where: { id: userId, type: 'client' },
   });
 
-  console.log('caddeeee', userId, client);
-
   if (!client) {
     res.status(404).json().end();
   }
@@ -57,8 +55,8 @@ const postDepositBalance = async (req, res) => {
   }
 };
 
-const contractRoutes = (app) => {
+const profileRoutes = (app) => {
   app.post('/balances/deposit/:userId', getProfile, postDepositBalance);
 };
 
-export default contractRoutes;
+export default profileRoutes;
