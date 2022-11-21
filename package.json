@@ -16,7 +16,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
     "seed": "babel-node ./scripts/seedDb.js",
-    "test": "nodemon --exec mocha -r @babel/register src/**/Admin.spec.js"
+    "test": "nodemon --exec mocha -r @babel/register src/**/*.spec.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

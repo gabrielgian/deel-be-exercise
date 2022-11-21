@@ -46,7 +46,7 @@ const getBestClients = async (req, res) => {
   }
 
   const groupedJobsByClient = await Job.findAll({
-    attributes: ['Contract.Client.*', [sequelize.fn('sum', sequelize.col('price')), 'sum_price']],
+    attributes: ['Contract.Client.*', [sequelize.fn('sum', sequelize.col('price')), 'sumPrice']],
     include: {
       model: Contract,
       include: {
@@ -62,11 +62,15 @@ const getBestClients = async (req, res) => {
       },
     },
     group: 'Contract.Client.id',
-    order: [['sum_price', 'DESC']],
+    order: [['sumPrice', 'DESC']],
     limit,
   });
 
-  const clients = groupedJobsByClient.map((client) => client.Contract?.Client);
+  const clients = groupedJobsByClient.map((client) => ({
+    id: client.Contract?.Client?.id,
+    fullName: client.Contract?.Client?.fullName,
+    sumPrice: client.dataValues?.sumPrice
+  }));
 
   res.status(200).json(clients).end();
 };

@@ -23,6 +23,12 @@ Profile.init(
     type: {
       type: Sequelize.ENUM('client', 'contractor'),
     },
+    fullName: {
+      type: Sequelize.VIRTUAL,
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      }
+    }
   },
   {
     sequelize,
