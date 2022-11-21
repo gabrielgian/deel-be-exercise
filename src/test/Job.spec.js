@@ -7,7 +7,7 @@ import app from '../app';
 chai.use(chaiHttp);
 chai.should();
 
-describe('Testing Jobs routes', () => {
+describe('Testing Jobs routes', async () => {
   describe('GET: /jobs/unpaid', () => {
     it('Should return all unpaid jobs for a user for active contracts', (done) => {
       chai
@@ -81,6 +81,5 @@ describe('Testing Jobs routes', () => {
           done();
         });
     });
-
   });
 });
