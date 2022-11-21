@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "seed": "node ./scripts/seedDb.js",
+    "seed": "babel-node ./scripts/seedDb.js",
     "test": "nodemon --exec mocha -r @babel/register src/**/*.spec.js"
   },
   "devDependencies": {
