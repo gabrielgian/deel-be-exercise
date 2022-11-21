@@ -1,8 +1,8 @@
 import sequelize from './sequelize';
 
-export { default as Contract } from './Contract';
-export { default as Job } from './Job';
-export { default as Profile } from './Profile';
+export { default as Contract } from './Contract.model';
+export { default as Job } from './Job.model';
+export { default as Profile } from './Profile.model';
 
 (function () {
   const { Contract, Job, Profile } = sequelize.models;
