@@ -53,7 +53,7 @@ describe('Testing Contract routes', () => {
         .get('/contracts')
         .set('profile_id', 5)
         .end((_, res) => {
-          res.should.have.status(200);
+          res.should.have.status(404);
           res.body.should.be.an('array');
           done();
         });

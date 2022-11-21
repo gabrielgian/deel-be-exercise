@@ -42,7 +42,7 @@ const getContracts = async (req, res) => {
   });
 
   if (contracts.length === 0) {
-    return res.status(404).end();
+    return res.status(404).json(contracts).end();
   }
 
   res.status(200).json(contracts).end();
