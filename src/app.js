@@ -1,7 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { sequelize } from './model';
+import sequelize from './controllers/models';
+// import { sequelize } from './model';
 import { getProfile } from './middleware/getProfile';
 
 const app = express();
