@@ -1,6 +1,7 @@
 import { getProfile } from '../middleware/getProfile';
 
 const getContractById = async (req, res) => {
+  console.log(123);
   const { Contract, Profile } = req.app.get('models');
 
   const { id } = req.params;
@@ -8,19 +9,27 @@ const getContractById = async (req, res) => {
 
   const contract = await Contract.findOne({
     where: { id },
-    include: {
-      model: Profile,
-      where: {
-        id: profile.id,
+    include: [
+      {
+        model: Profile,
+        as: 'Client',
       },
-    },
+      {
+        model: Profile,
+        as: 'Contractor',
+      },
+    ],
   });
 
   if (!contract) {
     return res.status(404).end();
   }
 
-  res.json(contract);
+  if (contract.Client?.id !== profile.id && contract.Contractor?.id !== profile.id) {
+    return res.status(403).end();
+  }
+
+  res.status(200).json(contract).end();
 };
 
 const contractRoutes = (app) => {

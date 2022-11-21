@@ -15,17 +15,22 @@
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "seed": "node ./scripts/seedDb.js"
+    "seed": "node ./scripts/seedDb.js",
+    "test": "nodemon --exec mocha -r @babel/register src/**/*.spec.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/node": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.18.9",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "concurrently": "4.1.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^10.1.0",
     "nodemon": "1.19.1",
     "prettier": "^2.7.1"
   },
